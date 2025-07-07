@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Nexus Network</title>
+    <title>PROTOKOL-X</title>
     <link rel="icon" href="https://via.placeholder.com/32/00EEFF/004D40?text=QN" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
@@ -1156,9 +1156,7 @@
                 <button class="nav-item" data-screen="settings-screen" id="settings-nav-item">Ayarlar</button>
                 <button class="nav-item" data-screen="admin-panel-screen" id="admin-panel-nav-item" style="display:none;">Yönetim Paneli</button>
                 <span class="online-users-count" id="online-users-count">Çevrimiçi: 0</span>
-                
-<button class="nav-item" data-screen="encryption-screen" id="encryption-nav-item">Şifreleme</button>
-<button class="nav-item" id="logout-btn">Çıkış Yap</button>
+                <button class="nav-item" id="logout-btn">Çıkış Yap</button>
             </nav>
         </div>
 
@@ -1270,23 +1268,6 @@
                     <p>Buraya genel sistem ayarları veya daha fazla yönetim aracı eklenebilir.</p>
                 </div>
             </section>
-
-<section id="encryption-screen" class="screen">
-    <div class="chat-container">
-        <h2 style="color: var(--primary-color); text-align:center;">Şifreleme & Çözme Aracı</h2>
-        <div class="form-group">
-            <label for="plain-text">Şifrelenecek Metin:</label>
-            <textarea id="plain-text" rows="4" placeholder="Metni buraya yaz..." style="width: 100%;"></textarea>
-            <button class="btn" onclick="encryptText()">Şifrele</button>
-        </div>
-        <div class="form-group">
-            <label for="encrypted-text">Şifreli Metin:</label>
-            <textarea id="encrypted-text" rows="4" placeholder="Şifreli metin burada görünecek..." style="width: 100%;"></textarea>
-            <button class="btn" onclick="decryptText()">Çözümle</button>
-        </div>
-    </div>
-</section>
-</section>
         </div>
     </div>
 
@@ -1338,138 +1319,10 @@
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js">
-function showToastMessage() {
-    const toast = document.getElementById("message-toast");
-    toast.style.display = "block";
-    document.getElementById("notification-sound").play();
-    toast.onclick = () => {
-        showScreen("chat-screen");
-        toast.style.display = "none";
-    };
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 5000);
-}
-
-// Chat'e gelen mesajlarda tetiklenmeli
-// displayMessage gibi fonksiyon içine: showToastMessage();
-
-function encryptText() {
-    const plainText = document.getElementById("plain-text").value;
-    const encoded = btoa(plainText);
-    document.getElementById("encrypted-text").value = encoded;
-}
-function decryptText() {
-    const encryptedText = document.getElementById("encrypted-text").value;
-    try {
-        const decoded = atob(encryptedText);
-        document.getElementById("plain-text").value = decoded;
-    } catch (e) {
-        alert("Geçersiz şifreli metin!");
-    }
-}
-
-</script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
-function showToastMessage() {
-    const toast = document.getElementById("message-toast");
-    toast.style.display = "block";
-    document.getElementById("notification-sound").play();
-    toast.onclick = () => {
-        showScreen("chat-screen");
-        toast.style.display = "none";
-    };
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 5000);
-}
-
-// Chat'e gelen mesajlarda tetiklenmeli
-// displayMessage gibi fonksiyon içine: showToastMessage();
-
-function encryptText() {
-    const plainText = document.getElementById("plain-text").value;
-    const encoded = btoa(plainText);
-    document.getElementById("encrypted-text").value = encoded;
-}
-function decryptText() {
-    const encryptedText = document.getElementById("encrypted-text").value;
-    try {
-        const decoded = atob(encryptedText);
-        document.getElementById("plain-text").value = decoded;
-    } catch (e) {
-        alert("Geçersiz şifreli metin!");
-    }
-}
-
-</script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js">
-function showToastMessage() {
-    const toast = document.getElementById("message-toast");
-    toast.style.display = "block";
-    document.getElementById("notification-sound").play();
-    toast.onclick = () => {
-        showScreen("chat-screen");
-        toast.style.display = "none";
-    };
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 5000);
-}
-
-// Chat'e gelen mesajlarda tetiklenmeli
-// displayMessage gibi fonksiyon içine: showToastMessage();
-
-function encryptText() {
-    const plainText = document.getElementById("plain-text").value;
-    const encoded = btoa(plainText);
-    document.getElementById("encrypted-text").value = encoded;
-}
-function decryptText() {
-    const encryptedText = document.getElementById("encrypted-text").value;
-    try {
-        const decoded = atob(encryptedText);
-        document.getElementById("plain-text").value = decoded;
-    } catch (e) {
-        alert("Geçersiz şifreli metin!");
-    }
-}
-
-</script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js">
-function showToastMessage() {
-    const toast = document.getElementById("message-toast");
-    toast.style.display = "block";
-    document.getElementById("notification-sound").play();
-    toast.onclick = () => {
-        showScreen("chat-screen");
-        toast.style.display = "none";
-    };
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 5000);
-}
-
-// Chat'e gelen mesajlarda tetiklenmeli
-// displayMessage gibi fonksiyon içine: showToastMessage();
-
-function encryptText() {
-    const plainText = document.getElementById("plain-text").value;
-    const encoded = btoa(plainText);
-    document.getElementById("encrypted-text").value = encoded;
-}
-function decryptText() {
-    const encryptedText = document.getElementById("encrypted-text").value;
-    try {
-        const decoded = atob(encryptedText);
-        document.getElementById("plain-text").value = decoded;
-    } catch (e) {
-        alert("Geçersiz şifreli metin!");
-    }
-}
-
-</script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script>
         // Your Firebase configuration
        const firebaseConfig = {
@@ -3331,44 +3184,6 @@ function decryptText() {
         });
 
 
-    
-function showToastMessage() {
-    const toast = document.getElementById("message-toast");
-    toast.style.display = "block";
-    document.getElementById("notification-sound").play();
-    toast.onclick = () => {
-        showScreen("chat-screen");
-        toast.style.display = "none";
-    };
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 5000);
-}
-
-// Chat'e gelen mesajlarda tetiklenmeli
-// displayMessage gibi fonksiyon içine: showToastMessage();
-
-function encryptText() {
-    const plainText = document.getElementById("plain-text").value;
-    const encoded = btoa(plainText);
-    document.getElementById("encrypted-text").value = encoded;
-}
-function decryptText() {
-    const encryptedText = document.getElementById("encrypted-text").value;
-    try {
-        const decoded = atob(encryptedText);
-        document.getElementById("plain-text").value = decoded;
-    } catch (e) {
-        alert("Geçersiz şifreli metin!");
-    }
-}
-
-</script>
-
-<div id="message-toast" style="position: fixed; bottom: 20px; right: 20px; background: var(--notification-bg); color: white; padding: 15px 20px; border-radius: 8px; border: 1px solid var(--notification-border); box-shadow: 0 0 15px var(--notification-border); z-index: 5000; display: none; cursor: pointer; font-family: Orbitron;">
-📩 Yeni mesajınız var! Tıklayın.
-</div>
-<audio id="notification-sound" src="https://www.myinstants.com/media/sounds/notification.mp3" preload="auto"></audio>
-
+    </script>
 </body>
 </html>
