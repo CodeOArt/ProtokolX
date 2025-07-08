@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site-X | Quantum Nexus Interface</title>
+    <title>Site-X</title>
     <link rel="icon" href="https://via.placeholder.com/32/FF00FF/0A0A0A?text=X" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -135,6 +135,8 @@
         .user-info{flex-grow:1;}
         .user-name{font-weight:700;}
         .user-rank{padding:2px 5px;border-radius:3px;font-size:0.8em;background:rgba(0, 238, 255, 0.2);}
+        .user-specialty{padding:2px 5px;border-radius:3px;font-size:0.8em;background:rgba(255, 0, 255, 0.2);}
+        .user-warnings{color:var(--error-red);font-size:0.8em;}
         .user-actions{display:flex;gap:5px;}
         .user-action-btn{padding:5px 10px;border-radius:3px;font-size:0.8em;cursor:pointer;transition:all .3s;}
         .promote-btn{background:var(--success-green);color:var(--text-dark);}
@@ -184,6 +186,7 @@
         .profile-info{flex-grow:1;}
         .profile-name{font-family:'Orbitron';font-size:1.5em;margin-bottom:5px;}
         .profile-rank{padding:5px 10px;border-radius:5px;background:rgba(0, 238, 255, 0.2);display:inline-block;}
+        .profile-warnings{color:var(--error-red);margin-top:5px;font-size:0.9em;}
         .profile-details{margin-top:20px;}
         .profile-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0, 238, 255, 0.2);}
         .profile-row:last-child{border-bottom:none;}
@@ -207,6 +210,11 @@
         .toggle-slider:before{position:absolute;content:"";height:16px;width:16px;left:4px;bottom:3px;background-color:var(--primary-color);transition:.4s;border-radius:50%;}
         input:checked + .toggle-slider{background-color:rgba(0, 238, 255, 0.2);}
         input:checked + .toggle-slider:before{transform:translateX(26px);}
+        
+        /* Username Change */
+        .username-change-form{display:flex;gap:10px;margin-top:20px;}
+        #new-username-input{flex-grow:1;background:rgba(0,0,0,0.3);border:1px solid var(--primary-color);color:var(--text-light);padding:10px;border-radius:5px;font-family:inherit;outline:none;}
+        #change-username-btn{padding:10px 15px;background:var(--primary-color);color:var(--text-dark);border:none;border-radius:5px;font-family:'Orbitron';cursor:pointer;}
     </style>
 </head>
 <body>
@@ -369,6 +377,7 @@
             <div class="profile-info">
                 <div class="profile-name" id="profile-name">Operatör</div>
                 <div class="profile-rank" id="profile-rank">X-0</div>
+                <div class="profile-warnings" id="profile-warnings"></div>
             </div>
         </div>
         <div class="profile-details">
@@ -397,6 +406,13 @@
     <div class="modal">
         <button class="modal-close" id="settings-close">×</button>
         <h3 class="modal-title">Ayarlar</h3>
+        <div class="settings-section">
+            <h4>Kullanıcı Adı</h4>
+            <div class="username-change-form">
+                <input type="text" id="new-username-input" placeholder="Yeni kullanıcı adı">
+                <button id="change-username-btn">Değiştir</button>
+            </div>
+        </div>
         <div class="settings-section">
             <h4>Bildirimler</h4>
             <div class="setting-item">
@@ -520,8 +536,13 @@
         }
         
         // Hide all pages and show the selected one
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
+        document.querySelectorAll('.page').forEach(p => {
+            p.classList.remove('active');
+            p.style.display = 'none';
+        });
+        const activePage = document.getElementById(pageId);
+        activePage.classList.add('active');
+        activePage.style.display = 'block';
 
         // Update active nav item
         document.querySelectorAll('.nav-item').forEach(item => {
@@ -617,6 +638,24 @@
                 });
             }
         });
+    }
+
+    async function changeUsername(newUsername) {
+        if (!currentUserId || !newUsername || newUsername.length < 3) {
+            showAlert('Kullanıcı adı en az 3 karakter olmalıdır', 'error');
+            return;
+        }
+        
+        try {
+            await database.ref(`users/${currentUserId}/username`).set(newUsername);
+            currentUserName = newUsername;
+            document.getElementById('sidebar-username').textContent = currentUserName;
+            document.getElementById('user-avatar').textContent = currentUserName.charAt(0).toUpperCase();
+            showAlert('Kullanıcı adı başarıyla değiştirildi', 'success');
+            document.getElementById('new-username-input').value = '';
+        } catch (error) {
+            showAlert('Kullanıcı adı değiştirilemedi: ' + error.message, 'error');
+        }
     }
 
     // --- REALTIME LISTENERS ---
@@ -727,6 +766,7 @@
             <div class="message-actions">
                 <button class="message-action-btn" data-action="reply" data-message-id="${messageId}" data-message-text="${message.text}">↩</button>
                 ${!isCurrentUser ? `<button class="message-action-btn" data-action="pm" data-user-id="${message.uid}" data-user-name="${message.name}">✉</button>` : ''}
+                ${(isCurrentUser || currentUserRank === "X-5") ? `<button class="message-action-btn" data-action="delete" data-message-id="${messageId}">×</button>` : ''}
             </div>
         `;
         
@@ -764,6 +804,15 @@
             repliedMessageText = null;
             const replyBar = document.getElementById('reply-to-bar');
             if (replyBar) replyBar.remove();
+        }
+    }
+
+    async function deleteMessage(messageId) {
+        if (!messageId) return;
+        
+        if (currentUserRank === "X-5" || confirm('Mesajı silmek istediğinize emin misiniz?')) {
+            await database.ref('messages/' + messageId).remove();
+            showAlert('Mesaj silindi', 'success');
         }
     }
 
@@ -819,11 +868,17 @@
     function addFriendToList(listElement, friendId, friendData) {
         const friendItem = document.createElement('li');
         friendItem.className = 'friend-item';
+        
+        // Check if user has 3 or more warnings
+        const warningCount = friendData.warnings ? Object.keys(friendData.warnings).length : 0;
+        const isHighWarning = warningCount >= 3;
+        
         friendItem.innerHTML = `
             <div class="friend-info">
                 <div class="friend-status ${friendData.online ? 'online' : ''}"></div>
-                <div class="friend-name" data-user-id="${friendId}">${friendData.username}</div>
+                <div class="friend-name" data-user-id="${friendId}" style="${isHighWarning ? 'color: var(--error-red)' : ''}">${friendData.username}</div>
                 <div class="friend-rank">${friendData.rank}</div>
+                ${warningCount > 0 ? `<div class="user-warnings">${warningCount} uyarı</div>` : ''}
             </div>
             <div class="friend-actions">
                 <button class="friend-action-btn pm-btn" data-user-id="${friendId}" data-user-name="${friendData.username}">Mesaj</button>
@@ -836,11 +891,17 @@
     function addFriendRequestToList(listElement, requesterId, requesterData) {
         const requestItem = document.createElement('li');
         requestItem.className = 'friend-item';
+        
+        // Check if user has 3 or more warnings
+        const warningCount = requesterData.warnings ? Object.keys(requesterData.warnings).length : 0;
+        const isHighWarning = warningCount >= 3;
+        
         requestItem.innerHTML = `
             <div class="friend-info">
                 <div class="friend-status ${requesterData.online ? 'online' : ''}"></div>
-                <div class="friend-name" data-user-id="${requesterId}">${requesterData.username}</div>
+                <div class="friend-name" data-user-id="${requesterId}" style="${isHighWarning ? 'color: var(--error-red)' : ''}">${requesterData.username}</div>
                 <div class="friend-rank">${requesterData.rank}</div>
+                ${warningCount > 0 ? `<div class="user-warnings">${warningCount} uyarı</div>` : ''}
             </div>
             <div class="friend-actions">
                 <button class="friend-action-btn pm-btn accept-btn" data-user-id="${requesterId}">Kabul</button>
@@ -982,6 +1043,16 @@
         document.getElementById('profile-specialty').textContent = userData.specialty || 'Belirtilmemiş';
         document.getElementById('profile-last-seen').textContent = userData.lastSeen ? formatDate(userData.lastSeen) : 'Bilinmiyor';
         
+        // Show warnings count
+        const warningsCount = userData.warnings ? Object.keys(userData.warnings).length : 0;
+        const warningsElement = document.getElementById('profile-warnings');
+        if (warningsCount > 0) {
+            warningsElement.textContent = `${warningsCount} uyarı`;
+            warningsElement.style.display = 'block';
+        } else {
+            warningsElement.style.display = 'none';
+        }
+        
         // Check if already friends
         const isFriend = await database.ref(`friends/${currentUserId}/${userId}`).once('value').then(snap => snap.exists());
         
@@ -992,6 +1063,18 @@
         } else {
             addFriendBtn.textContent = 'Bağlantı Ekle';
             addFriendBtn.style.backgroundColor = 'var(--success-green)';
+        }
+        
+        // Disable block button if user has 3 or more warnings
+        const blockBtn = document.getElementById('profile-block-btn');
+        if (warningsCount >= 3) {
+            blockBtn.disabled = true;
+            blockBtn.textContent = 'Engelle (3+ uyarı)';
+            blockBtn.style.backgroundColor = 'var(--warning-yellow)';
+        } else {
+            blockBtn.disabled = false;
+            blockBtn.textContent = 'Engelle';
+            blockBtn.style.backgroundColor = 'var(--error-red)';
         }
         
         document.getElementById('profile-modal').classList.add('active');
@@ -1151,10 +1234,16 @@
     function addUserToManagementList(userId, userData) {
         const userItem = document.createElement('li');
         userItem.className = 'user-item';
+        
+        // Count warnings
+        const warningCount = userData.warnings ? Object.keys(userData.warnings).length : 0;
+        
         userItem.innerHTML = `
             <div class="user-info">
-                <div class="user-name">${userData.username}</div>
+                <div class="user-name" style="${warningCount >= 3 ? 'color: var(--error-red)' : ''}">${userData.username}</div>
                 <div class="user-rank">${userData.rank}</div>
+                <div class="user-specialty">${userData.specialty || 'Belirtilmemiş'}</div>
+                ${warningCount > 0 ? `<div class="user-warnings">${warningCount} uyarı</div>` : ''}
             </div>
             <div class="user-actions">
                 <select class="user-rank-select" data-user-id="${userId}">
@@ -1165,8 +1254,15 @@
                     <option value="X-4" ${userData.rank === 'X-4' ? 'selected' : ''}>X-4</option>
                     <option value="X-5" ${userData.rank === 'X-5' ? 'selected' : ''}>X-5</option>
                 </select>
+                <select class="user-specialty-select" data-user-id="${userId}">
+                    <option value="Personel" ${userData.specialty === 'Personel' ? 'selected' : ''}>Personel</option>
+                    <option value="Teknik" ${userData.specialty === 'Teknik' ? 'selected' : ''}>Teknik</option>
+                    <option value="Güvenlik" ${userData.specialty === 'Güvenlik' ? 'selected' : ''}>Güvenlik</option>
+                    <option value="Yönetim" ${userData.specialty === 'Yönetim' ? 'selected' : ''}>Yönetim</option>
+                    <option value="Analist" ${userData.specialty === 'Analist' ? 'selected' : ''}>Analist</option>
+                </select>
                 <button class="user-action-btn warn-btn" data-user-id="${userId}">Uyarı</button>
-                <button class="user-action-btn ban-btn" data-user-id="${userId}">Yasakla</button>
+                <button class="user-action-btn ban-btn" data-user-id="${userId}" ${warningCount >= 3 ? 'disabled' : ''}>Yasakla</button>
             </div>
         `;
         document.getElementById('user-management-list').appendChild(userItem);
@@ -1177,6 +1273,13 @@
         
         await database.ref(`users/${userId}/rank`).set(newRank);
         showAlert(`Kullanıcı rütbesi güncellendi: ${newRank}`, 'success');
+    }
+
+    async function updateUserSpecialty(userId, newSpecialty) {
+        if (currentUserRank !== "X-5") return;
+        
+        await database.ref(`users/${userId}/specialty`).set(newSpecialty);
+        showAlert(`Kullanıcı uzmanlığı güncellendi: ${newSpecialty}`, 'success');
     }
 
     async function warnUser(userId) {
@@ -1242,6 +1345,7 @@
         
         document.getElementById('sound-notifications-toggle').checked = soundEnabled;
         document.getElementById('tts-toggle').checked = ttsEnabled;
+        document.getElementById('new-username-input').value = currentUserName;
     }
 
     function saveSettings() {
@@ -1358,6 +1462,8 @@
                     });
                 } else if (action === 'pm') {
                     openPrivateChat(actionBtn.dataset.userId, actionBtn.dataset.userName);
+                } else if (action === 'delete') {
+                    deleteMessage(actionBtn.dataset.messageId);
                 }
             } else if (senderName) {
                 const userId = senderName.dataset.userId;
@@ -1428,8 +1534,12 @@
         // Admin Panel
         document.getElementById('user-management-list').addEventListener('change', (e) => {
             const rankSelect = e.target.closest('.user-rank-select');
+            const specialtySelect = e.target.closest('.user-specialty-select');
+            
             if (rankSelect) {
                 updateUserRank(rankSelect.dataset.userId, rankSelect.value);
+            } else if (specialtySelect) {
+                updateUserSpecialty(specialtySelect.dataset.userId, specialtySelect.value);
             }
         });
         
@@ -1484,6 +1594,18 @@
         document.getElementById('settings-close').addEventListener('click', () => {
             saveSettings();
             document.getElementById('settings-modal').classList.remove('active');
+        });
+        
+        document.getElementById('change-username-btn').addEventListener('click', () => {
+            const newUsername = document.getElementById('new-username-input').value.trim();
+            changeUsername(newUsername);
+        });
+        
+        document.getElementById('new-username-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const newUsername = e.target.value.trim();
+                changeUsername(newUsername);
+            }
         });
 
         // Global Command Line
