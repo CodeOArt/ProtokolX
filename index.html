@@ -29,6 +29,7 @@
             --message-bubble-color: rgba(0, 238, 255, 0.1);
             --message-bubble-color-received: rgba(255, 0, 255, 0.1);
         }
+        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -36,19 +37,24 @@
             scrollbar-width: thin;
             scrollbar-color: var(--primary-color) var(--background-dark);
         }
+        
         ::-webkit-scrollbar {
             width: 8px;
         }
+        
         ::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.3);
         }
+        
         ::-webkit-scrollbar-thumb {
             background: var(--primary-color);
             border-radius: 4px;
         }
+        
         ::-webkit-scrollbar-thumb:hover {
             background: var(--secondary-color);
         }
+        
         body {
             font-family: 'Share Tech Mono', monospace;
             background-color: var(--background-dark);
@@ -72,6 +78,7 @@
         .alarm-effect {
             animation: alarmFlash 0.5s infinite alternate;
         }
+        
         @keyframes alarmFlash {
             0% { background-color: var(--background-dark); }
             100% { background-color: rgba(255, 0, 0, 0.3); }
@@ -93,10 +100,12 @@
             opacity: 1;
             visibility: visible;
         }
+        
         #login-overlay.hidden {
             opacity: 0;
             visibility: hidden;
         }
+        
         #login-container {
             width: 400px;
             padding: 40px;
@@ -108,6 +117,7 @@
             text-align: center;
             position: relative;
         }
+        
         #retina-scanner {
             width: 150px;
             height: 150px;
@@ -118,6 +128,7 @@
             overflow: hidden;
             background: radial-gradient(circle, rgba(0,238,255,0.3) 0%, transparent 70%);
         }
+        
         #retina-scanner .scan-line {
             position: absolute;
             top: 0;
@@ -128,11 +139,13 @@
             box-shadow: 0 0 10px var(--primary-color);
             animation: scan 3s linear infinite;
         }
+        
         @keyframes scan {
             0% { top: 0; }
             50% { top: 100%; }
             100% { top: 0; }
         }
+        
         #login-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 2em;
@@ -140,9 +153,11 @@
             text-shadow: 0 0 10px var(--primary-color);
             margin-bottom: 20px;
         }
+        
         .login-form-group {
             margin-bottom: 15px;
         }
+        
         .login-form-group input {
             width: 100%;
             background: rgba(0,0,0,0.4);
@@ -154,33 +169,38 @@
             outline: none;
             transition: all .3s;
         }
+        
         .login-form-group input:focus {
             box-shadow: 0 0 15px var(--border-glow);
             background: rgba(0,0,0,0.6);
         }
+        
         .btn-primary {
             width: 100%;
             padding: 12px;
             background: var(--primary-color);
             border: none;
             color: var(--text-dark);
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Orbitron';
             cursor: pointer;
             border-radius: 5px;
             transition: all .3s;
             position: relative;
             overflow: hidden;
         }
+        
         .btn-primary:hover {
             background: var(--secondary-color);
             color: var(--text-light);
             box-shadow: 0 0 15px var(--secondary-color);
         }
+        
         #login-status {
             margin-top: 15px;
             color: var(--error-red);
             display: none;
         }
+        
         #switch-auth-link {
             color: var(--primary-color);
             text-decoration: none;
@@ -188,9 +208,11 @@
             display: inline-block;
             cursor: pointer;
         }
+        
         #login-container.error {
             animation: glitch-effect .4s;
         }
+        
         @keyframes glitch-effect {
             0% { transform: translate(0); border-color: var(--error-red); }
             20% { transform: translate(-3px, 3px); }
@@ -206,6 +228,7 @@
             width: 100%;
             height: 100vh;
         }
+        
         #sidebar {
             width: var(--sidebar-width);
             background: var(--background-light);
@@ -216,27 +239,33 @@
             z-index: 100;
             box-shadow: 5px 0 25px rgba(0, 238, 255, 0.1);
         }
+        
         #sidebar.collapsed {
             width: var(--sidebar-width-collapsed);
         }
+        
         #sidebar-header {
             padding: 20px;
             text-align: center;
             border-bottom: 1px solid var(--primary-color);
         }
+        
         #site-logo {
             font-family: 'Orbitron';
             font-size: 2em;
             color: var(--primary-color);
             cursor: pointer;
         }
+        
         #sidebar.collapsed #site-logo {
             font-size: 1.8em;
         }
+        
         #sidebar nav {
             flex-grow: 1;
             padding-top: 20px;
         }
+        
         .nav-item {
             display: flex;
             align-items: center;
@@ -247,33 +276,40 @@
             white-space: nowrap;
             overflow: hidden;
         }
+        
         .nav-item i {
             width: 30px;
             font-size: 1.2em;
             text-align: center;
             margin-right: 15px;
         }
+        
         .nav-item:hover, .nav-item.active {
             background: rgba(0, 238, 255, 0.1);
             color: var(--primary-color);
             border-right: 3px solid var(--primary-color);
             box-shadow: inset -10px 0 15px -10px rgba(0, 238, 255, 0.2);
         }
+        
         #sidebar.collapsed .nav-item span {
             display: none;
         }
+        
         #sidebar.collapsed .nav-item i {
             margin-right: 0;
         }
+        
         #sidebar-footer {
             padding: 20px;
             border-top: 1px solid var(--primary-color);
         }
+        
         #user-profile-widget {
             display: flex;
             align-items: center;
             cursor: pointer;
         }
+        
         #user-avatar {
             width: 40px;
             height: 40px;
@@ -288,6 +324,7 @@
             margin-right: 10px;
             position: relative;
         }
+        
         .notification-badge {
             position: absolute;
             top: -5px;
@@ -302,16 +339,20 @@
             justify-content: center;
             align-items: center;
         }
+        
         #user-info .username {
             font-weight: 700;
         }
+        
         #user-info .rank {
             font-size: 0.8em;
             color: #aaa;
         }
+        
         #sidebar.collapsed #user-info {
             display: none;
         }
+        
         #sidebar-toggle {
             background: var(--primary-color);
             color: var(--text-dark);
@@ -326,9 +367,11 @@
             z-index: 101;
             transition: left .3s, transform .3s;
         }
+        
         #sidebar.collapsed #sidebar-toggle {
             left: calc(var(--sidebar-width-collapsed) - 15px);
         }
+        
         #sidebar-toggle:hover {
             transform: scale(1.1);
         }
@@ -341,6 +384,7 @@
             flex-direction: column;
             overflow: hidden;
         }
+        
         #page-header {
             padding: 15px 25px;
             background: var(--background-light);
@@ -349,10 +393,12 @@
             justify-content: space-between;
             align-items: center;
         }
+        
         #page-title {
             font-family: 'Orbitron';
             font-size: 1.8em;
         }
+        
         #page-content {
             flex-grow: 1;
             padding: 25px;
@@ -360,23 +406,28 @@
             position: relative;
             overflow-x: hidden;
         }
+        
         .page {
             display: none;
             height: 100%;
             animation: fadeIn .5s;
         }
+        
         .page.active {
             display: block;
         }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
         #dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
+        
         .widget {
             background: var(--background-light);
             border: 1px solid var(--primary-color);
@@ -385,10 +436,12 @@
             box-shadow: 0 0 15px rgba(0, 238, 255, 0.1);
             transition: all .3s;
         }
+        
         .widget:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 25px rgba(0, 238, 255, 0.2);
         }
+        
         .widget h3 {
             font-family: 'Orbitron';
             margin-bottom: 15px;
@@ -396,6 +449,7 @@
             border-bottom: 1px solid var(--secondary-color);
             padding-bottom: 10px;
         }
+        
         .widget-content {
             font-size: 1.2em;
         }
@@ -406,6 +460,7 @@
             flex-direction: column;
             height: 100%;
         }
+        
         #chat-messages {
             flex-grow: 1;
             padding: 15px;
@@ -416,6 +471,7 @@
             display: flex;
             flex-direction: column;
         }
+        
         .message {
             position: relative;
             padding: 10px 15px;
@@ -426,48 +482,58 @@
             word-wrap: break-word;
             animation: messageFadeIn 0.3s ease-out;
         }
+        
         @keyframes messageFadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
         .message.sent {
             background: linear-gradient(90deg, var(--message-bubble-color), var(--message-bubble-color));
             margin-left: auto;
             border-left: 3px solid var(--primary-color);
         }
+        
         .message.received {
             background: linear-gradient(90deg, var(--message-bubble-color-received), var(--message-bubble-color-received));
             margin-right: auto;
             border-left: 3px solid var(--secondary-color);
         }
+        
         .message-sender {
             font-weight: 700;
             color: var(--primary-color);
             margin-bottom: 5px;
             cursor: pointer;
         }
+        
         .message.received .message-sender {
             color: var(--secondary-color);
         }
+        
         .message-text {
             word-wrap: break-word;
         }
+        
         .message-timestamp {
             font-size: 0.8em;
             color: #aaa;
             text-align: right;
             margin-top: 5px;
         }
+        
         .message-actions {
             display: none;
             position: absolute;
             right: 10px;
             top: 10px;
         }
+        
         .message:hover .message-actions {
             display: flex;
             gap: 5px;
         }
+        
         .message-action-btn {
             background: rgba(0,0,0,0.5);
             border: 1px solid var(--primary-color);
@@ -481,6 +547,7 @@
             align-items: center;
             justify-content: center;
         }
+        
         .reply-to-bar {
             background: rgba(0, 238, 255, 0.1);
             padding: 8px;
@@ -491,12 +558,14 @@
             align-items: center;
             border-left: 3px solid var(--primary-color);
         }
+        
         .reply-to-text {
             flex-grow: 1;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        
         .cancel-reply-btn {
             background: none;
             border: none;
@@ -512,6 +581,7 @@
             background: var(--background-light);
             border-top: 1px solid var(--primary-color);
         }
+        
         #chat-input {
             flex-grow: 1;
             background: rgba(0,0,0,0.3);
@@ -523,9 +593,11 @@
             outline: none;
             transition: all .3s;
         }
+        
         #chat-input:focus {
             box-shadow: 0 0 10px var(--border-glow);
         }
+        
         #send-message-btn {
             background: var(--primary-color);
             color: var(--text-dark);
@@ -536,6 +608,7 @@
             font-family: 'Orbitron';
             transition: all .3s;
         }
+        
         #send-message-btn:hover {
             background: var(--secondary-color);
             color: var(--text-light);
@@ -545,15 +618,18 @@
         .friends-section {
             margin-bottom: 25px;
         }
+        
         .friends-section h4 {
             color: var(--primary-color);
             margin-bottom: 15px;
             padding-bottom: 5px;
             border-bottom: 1px solid var(--secondary-color);
         }
+        
         .friends-list {
             list-style: none;
         }
+        
         .friend-item {
             display: flex;
             justify-content: space-between;
@@ -564,37 +640,45 @@
             background: rgba(0,0,0,0.2);
             transition: all .3s;
         }
+        
         .friend-item:hover {
             background: rgba(0, 238, 255, 0.1);
         }
+        
         .friend-info {
             display: flex;
             align-items: center;
             gap: 10px;
         }
+        
         .friend-status {
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background: #888;
         }
+        
         .friend-status.online {
             background: var(--success-green);
             box-shadow: 0 0 5px var(--success-green);
         }
+        
         .friend-name {
             font-weight: 700;
         }
+        
         .friend-rank {
             padding: 2px 5px;
             border-radius: 3px;
             font-size: 0.8em;
             background: rgba(0, 238, 255, 0.2);
         }
+        
         .friend-actions {
             display: flex;
             gap: 5px;
         }
+        
         .friend-action-btn {
             padding: 5px 10px;
             border-radius: 3px;
@@ -602,10 +686,12 @@
             cursor: pointer;
             transition: all .3s;
         }
+        
         .pm-btn {
             background: var(--primary-color);
             color: var(--text-dark);
         }
+        
         .remove-btn {
             background: var(--error-red);
             color: white;
@@ -617,6 +703,7 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
+        
         .data-widget {
             background: var(--background-light);
             border: 1px solid var(--primary-color);
@@ -624,30 +711,36 @@
             padding: 15px;
             box-shadow: 0 0 15px rgba(0, 238, 255, 0.1);
         }
+        
         .data-widget h4 {
             color: var(--primary-color);
             margin-bottom: 15px;
         }
+        
         #data-chart {
             width: 100%;
             height: 200px;
         }
+        
         #quantum-matrix {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 5px;
             margin-top: 15px;
         }
+        
         .matrix-cell {
             aspect-ratio: 1/1;
             background: rgba(0, 238, 255, 0.1);
             border-radius: 2px;
             transition: all .2s;
         }
+        
         .matrix-cell.active {
             background: var(--primary-color);
             box-shadow: 0 0 5px var(--primary-color);
         }
+        
         #core-temp-gauge {
             height: 20px;
             background: rgba(0,0,0,0.3);
@@ -655,6 +748,7 @@
             margin-top: 10px;
             overflow: hidden;
         }
+        
         #core-temp-bar {
             height: 100%;
             background: var(--success-green);
@@ -666,15 +760,18 @@
         .admin-section {
             margin-bottom: 25px;
         }
+        
         .admin-section h4 {
             color: var(--primary-color);
             margin-bottom: 15px;
             padding-bottom: 5px;
             border-bottom: 1px solid var(--secondary-color);
         }
+        
         .user-list {
             list-style: none;
         }
+        
         .user-item {
             display: flex;
             justify-content: space-between;
@@ -684,32 +781,39 @@
             margin-bottom: 5px;
             background: rgba(0,0,0,0.2);
         }
+        
         .user-info {
             flex-grow: 1;
         }
+        
         .user-name {
             font-weight: 700;
         }
+        
         .user-rank {
             padding: 2px 5px;
             border-radius: 3px;
             font-size: 0.8em;
             background: rgba(0, 238, 255, 0.2);
         }
+        
         .user-specialty {
             padding: 2px 5px;
             border-radius: 3px;
             font-size: 0.8em;
             background: rgba(255, 0, 255, 0.2);
         }
+        
         .user-warnings {
             color: var(--error-red);
             font-size: 0.8em;
         }
+        
         .user-actions {
             display: flex;
             gap: 5px;
         }
+        
         .user-action-btn {
             padding: 5px 10px;
             border-radius: 3px;
@@ -717,18 +821,22 @@
             cursor: pointer;
             transition: all .3s;
         }
+        
         .promote-btn {
             background: var(--success-green);
             color: var(--text-dark);
         }
+        
         .warn-btn {
             background: var(--warning-yellow);
             color: var(--text-dark);
         }
+        
         .ban-btn {
             background: var(--error-red);
             color: white;
         }
+        
         #announcement-textarea {
             width: 100%;
             height: 150px;
@@ -751,16 +859,19 @@
             margin-bottom: 20px;
             box-shadow: 0 0 15px rgba(0, 238, 255, 0.1);
         }
+        
         .poll-question {
             font-family: 'Orbitron';
             color: var(--primary-color);
             margin-bottom: 15px;
             font-size: 1.2em;
         }
+        
         .poll-options {
             list-style: none;
             margin-bottom: 15px;
         }
+        
         .poll-option {
             margin-bottom: 10px;
             padding: 10px;
@@ -769,13 +880,16 @@
             cursor: pointer;
             transition: all .3s;
         }
+        
         .poll-option:hover {
             background: rgba(0, 238, 255, 0.1);
         }
+        
         .poll-option.selected {
             background: rgba(0, 238, 255, 0.2);
             border-left: 3px solid var(--primary-color);
         }
+        
         .poll-progress {
             height: 10px;
             background: rgba(0,0,0,0.3);
@@ -783,12 +897,14 @@
             margin-top: 5px;
             overflow: hidden;
         }
+        
         .poll-progress-bar {
             height: 100%;
             background: var(--primary-color);
             width: 0%;
             transition: width .5s;
         }
+        
         .poll-meta {
             display: flex;
             justify-content: space-between;
@@ -864,11 +980,13 @@
             display: flex;
             align-items: center;
         }
+        
         #global-command-line .prompt {
             font-family: 'Orbitron';
             color: var(--primary-color);
             margin-right: 10px;
         }
+        
         #command-input {
             flex-grow: 1;
             background: 0;
@@ -886,6 +1004,7 @@
             right: 20px;
             z-index: 9999;
         }
+        
         .toast {
             background: linear-gradient(135deg, var(--background-light), #1a1a2a);
             border: 1px solid var(--primary-color);
@@ -898,18 +1017,23 @@
             transform: translateX(120%);
             animation: slideIn .5s forwards;
         }
+        
         .toast.error {
             border-color: var(--error-red);
         }
+        
         .toast.success {
             border-color: var(--success-green);
         }
+        
         .toast.warning {
             border-color: var(--warning-yellow);
         }
+        
         @keyframes slideIn {
             to { transform: translateX(0); }
         }
+        
         @keyframes slideOut {
             to { transform: translateX(120%); }
         }
@@ -931,10 +1055,12 @@
             transition: all .3s;
             backdrop-filter: blur(5px);
         }
+        
         .modal-overlay.active {
             opacity: 1;
             visibility: visible;
         }
+        
         .modal {
             background: var(--background-light);
             border: 1px solid var(--primary-color);
@@ -947,9 +1073,11 @@
             transform: translateY(20px);
             transition: all .3s;
         }
+        
         .modal-overlay.active .modal {
             transform: translateY(0);
         }
+        
         .modal-close {
             position: absolute;
             top: 10px;
@@ -960,6 +1088,7 @@
             font-size: 1.5em;
             cursor: pointer;
         }
+        
         .modal-title {
             font-family: 'Orbitron';
             color: var(--primary-color);
@@ -975,6 +1104,7 @@
             display: flex;
             flex-direction: column;
         }
+        
         #private-chat-messages {
             flex-grow: 1;
             overflow-y: auto;
@@ -983,11 +1113,13 @@
             border-radius: 5px;
             padding: 10px;
         }
+        
         #private-chat-input-container {
             display: flex;
             gap: 10px;
             margin-top: 15px;
         }
+        
         #private-chat-input {
             flex-grow: 1;
             background: rgba(0,0,0,0.3);
@@ -1003,6 +1135,7 @@
         #data-panel-login-modal .modal {
             max-width: 400px;
         }
+        
         #access-denied-overlay {
             position: absolute;
             top: 0;
@@ -1022,15 +1155,18 @@
             pointer-events: none;
             transition: opacity .3s;
         }
+        
         #access-denied-overlay.active {
             opacity: 1;
             pointer-events: all;
             animation: pulseText .5s infinite alternate;
         }
+        
         @keyframes pulseText {
             0% { opacity: 0.8; }
             100% { opacity: 1; }
         }
+        
         #data-panel-login-modal.error {
             animation: glitch-effect .5s;
         }
@@ -1040,11 +1176,13 @@
             width: 90%;
             max-width: 400px;
         }
+        
         .profile-header {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
         }
+        
         .profile-avatar {
             width: 80px;
             height: 80px;
@@ -1059,48 +1197,60 @@
             font-weight: 700;
             margin-right: 20px;
         }
+        
         .profile-info {
             flex-grow: 1;
         }
+        
         .profile-name {
             font-family: 'Orbitron';
             font-size: 1.5em;
             margin-bottom: 5px;
         }
+        
         .profile-rank {
             padding: 5px 10px;
             border-radius: 5px;
             background: rgba(0, 238, 255, 0.2);
             display: inline-block;
         }
+        
         .profile-warnings {
             color: var(--error-red);
             margin-top: 5px;
             font-size: 0.9em;
         }
+        
         .profile-details {
             margin-top: 20px;
         }
+        
         .profile-row {
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
             border-bottom: 1px solid rgba(0, 238, 255, 0.2);
         }
+        
         .profile-row:last-child {
             border-bottom: none;
         }
+        
         .profile-label {
             color: var(--primary-color);
         }
+        
         .profile-value {
             text-align: right;
         }
+        
         .profile-actions {
             margin-top: 20px;
             display: flex;
             gap: 10px;
+            flex-direction: column;
         }
+        
         .profile-action-btn {
             flex-grow: 1;
             padding: 10px;
@@ -1109,18 +1259,27 @@
             cursor: pointer;
             transition: all .3s;
         }
+        
         .pm-btn {
             background: var(--primary-color);
             color: var(--text-dark);
             border: none;
         }
+        
         .add-friend-btn {
             background: var(--success-green);
             color: var(--text-dark);
             border: none;
         }
+        
         .block-btn {
             background: var(--error-red);
+            color: white;
+            border: none;
+        }
+        
+        .settings-btn {
+            background: var(--secondary-color);
             color: white;
             border: none;
         }
@@ -1130,15 +1289,18 @@
             width: 90%;
             max-width: 500px;
         }
+        
         .settings-section {
             margin-bottom: 20px;
         }
+        
         .settings-section h4 {
             color: var(--primary-color);
             margin-bottom: 15px;
             padding-bottom: 5px;
             border-bottom: 1px solid var(--secondary-color);
         }
+        
         .setting-item {
             display: flex;
             justify-content: space-between;
@@ -1146,20 +1308,24 @@
             padding: 10px 0;
             border-bottom: 1px solid rgba(0, 238, 255, 0.1);
         }
+        
         .setting-label {
             flex-grow: 1;
         }
+        
         .toggle-switch {
             position: relative;
             display: inline-block;
             width: 50px;
             height: 24px;
         }
+        
         .toggle-switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
+        
         .toggle-slider {
             position: absolute;
             cursor: pointer;
@@ -1172,6 +1338,7 @@
             border-radius: 24px;
             border: 1px solid var(--primary-color);
         }
+        
         .toggle-slider:before {
             position: absolute;
             content: "";
@@ -1183,9 +1350,11 @@
             transition: .4s;
             border-radius: 50%;
         }
+        
         input:checked + .toggle-slider {
             background-color: rgba(0, 238, 255, 0.2);
         }
+        
         input:checked + .toggle-slider:before {
             transform: translateX(26px);
         }
@@ -1196,6 +1365,7 @@
             gap: 10px;
             margin-top: 20px;
         }
+        
         #new-username-input {
             flex-grow: 1;
             background: rgba(0,0,0,0.3);
@@ -1206,6 +1376,7 @@
             font-family: inherit;
             outline: none;
         }
+        
         #change-username-btn {
             padding: 10px 15px;
             background: var(--primary-color);
@@ -1223,6 +1394,7 @@
             margin-top: 15px;
             flex-wrap: wrap;
         }
+        
         .color-option {
             width: 30px;
             height: 30px;
@@ -1231,6 +1403,7 @@
             border: 2px solid transparent;
             transition: all 0.3s;
         }
+        
         .color-option.selected {
             border-color: var(--text-light);
             transform: scale(1.1);
@@ -1250,6 +1423,7 @@
             justify-content: center;
             font-size: 1.2em;
         }
+        
         #emoji-picker {
             position: absolute;
             bottom: 60px;
@@ -1265,11 +1439,13 @@
             z-index: 100;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
+        
         #emoji-picker.active {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 5px;
         }
+        
         .emoji {
             font-size: 1.5em;
             cursor: pointer;
@@ -1277,6 +1453,7 @@
             padding: 5px;
             border-radius: 5px;
         }
+        
         .emoji:hover {
             background: rgba(0, 238, 255, 0.2);
         }
@@ -1316,7 +1493,42 @@
             80% { transform: translate(3px, -3px); }
             100% { transform: translate(0); }
         }
-        
+        @keyframes neonGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px var(--primary-color), 
+                    0 0 10px var(--primary-color), 
+                    0 0 20px var(--primary-color);
+    }
+    50% {
+        text-shadow: 0 0 10px var(--secondary-color), 
+                    0 0 20px var(--secondary-color), 
+                    0 0 30px var(--secondary-color);
+    }
+}
+@keyframes textFlicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+    }
+    20%, 22%, 24%, 55% {
+        opacity: 0.5;
+    }
+}
+
+.neon-text {
+    animation: neonGlow 2s infinite alternate, textFlicker 3s infinite;
+}
+
+.terminal-text {
+    font-family: 'Share Tech Mono', monospace;
+    position: relative;
+}
+
+.terminal-text::after {
+    content: '|';
+    animation: blink 1s infinite;
+    position: absolute;
+    right: -5px;
+}
         /* Terminal cursor effect */
         .terminal-cursor {
             animation: blink 1s infinite;
@@ -1326,6 +1538,7 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
+        
     </style>
 </head>
 <body>
@@ -1461,18 +1674,18 @@
                         <textarea id="encryption-text" rows="3" class="terminal-input"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Anahtar (Sadece Vigenère için):</label>
+                        <label>Anahtar (Sadece Y için):</label>
                         <input type="text" id="encryption-key" class="terminal-input">
                     </div>
                     <div class="form-group">
-                        <label>Kaydırma (Sadece Caesar için):</label>
+                        <label>Anahtar (Sadece X için):</label>
                         <input type="number" id="caesar-shift" value="3" min="1" max="25" class="terminal-input">
                     </div>
                     <div class="form-group">
-                        <button id="encrypt-caesar" class="terminal-btn">Caesar Şifrele</button>
-                        <button id="decrypt-caesar" class="terminal-btn">Caesar Çöz</button>
-                        <button id="encrypt-vigenere" class="terminal-btn">Vigenère Şifrele</button>
-                        <button id="decrypt-vigenere" class="terminal-btn">Vigenère Çöz</button>
+                        <button id="encrypt-caesar" class="terminal-btn">X Şifrele</button>
+                        <button id="decrypt-caesar" class="terminal-btn">X Çöz</button>
+                        <button id="encrypt-vigenere" class="terminal-btn">Y Şifrele</button>
+                        <button id="decrypt-vigenere" class="terminal-btn">Y Çöz</button>
                     </div>
                     <div class="form-group">
                         <label>Sonuç:</label>
@@ -1527,7 +1740,7 @@
 
 <div id="data-panel-login-modal" class="modal-overlay">
     <div class="modal">
-        <button class="modal-close" id="data-panel-login-close">×</button>
+        <button class="modal-close" id="data-panel-login-close"></button>
         <h3 class="modal-title">Veri Paneli Erişimi</h3>
         <div id="access-denied-overlay">ERİŞİM REDDEDİLDİ</div>
         <div class="login-form-group">
@@ -1541,7 +1754,7 @@
 <div id="profile-modal" class="modal-overlay">
     <div class="modal">
         <button class="modal-close" id="profile-close">×</button>
-        <h3 class="modal-title">Operatör Profili</h3>
+        <h3 class="modal-title">Personel Profili</h3>
         <div class="profile-header">
             <div class="profile-avatar" id="profile-avatar">?</div>
             <div class="profile-info">
@@ -1564,11 +1777,13 @@
                 <span class="profile-value" id="profile-last-seen">Bilinmiyor</span>
             </div>
         </div>
-        <div class="profile-actions">
-            <button class="profile-action-btn pm-btn" id="profile-pm-btn">Mesaj Gönder</button>
-            <button class="profile-action-btn add-friend-btn" id="profile-add-friend-btn">Bağlantı Ekle</button>
-            <button class="profile-action-btn block-btn" id="profile-block-btn">Engelle</button>
-        </div>
+        <!-- Burayı değiştir -->
+        <div class="profile-actions" id="profile-actions-container">
+    <button class="profile-action-btn pm-btn" id="profile-pm-btn">Mesaj Gönder</button>
+    <button class="profile-action-btn add-friend-btn" id="profile-add-friend-btn">Bağlantı Ekle</button>
+    <button class="profile-action-btn block-btn" id="profile-block-btn">Engelle</button>
+    <button class="profile-action-btn settings-btn" id="profile-settings-btn" style="display:none;">Ayarlar</button>
+</div>
     </div>
 </div>
 
@@ -1664,9 +1879,10 @@
     let activePoll = null;
     let userVotes = {};
     let alarmAudio = new Audio('https://actions.google.com/sounds/v1/alarms/spaceship_alarm.ogg?hl=tr');
-    alarmAudio.volume = 0.3;
+    alarmAudio.volume = 0.5;
     let particlesInitialized = false;
-
+    let lastMessageTimestamp = 0;
+    let privateChatListener = null; // YENİ EKLENDİ
     // Emoji list
     const emojis = ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🥸', '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥', '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯', '😦', '😧', '😮', '😲', '🥱', '😴', '🤤', '😪', '😵', '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩', '👻', '💀', '☠️', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾'];
 
@@ -1715,8 +1931,23 @@
     }
 
     function scrollToBottom(element) {
-        element.scrollTop = element.scrollHeight;
-    }
+    // Önce bir frame bekleyerek render işleminin tamamlanmasını sağlıyoruz
+    requestAnimationFrame(() => {
+        // Scroll davranışını smooth yapıyoruz
+        element.scrollTo({
+            top: element.scrollHeight,
+            behavior: 'smooth'
+        });
+        
+        // Bazen bir kere yetmiyor, 100ms sonra tekrar deniyoruz
+        setTimeout(() => {
+            element.scrollTo({
+                top: element.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 100);
+    });
+}
 
     function initParticles() {
         if (particlesInitialized) return;
@@ -1777,6 +2008,7 @@
         switch(pageId) {
             case 'chat-page':
                 loadChatMessages();
+                
                 scrollToBottom(document.getElementById('chat-messages'));
                 break;
             case 'friends-page':
@@ -1821,7 +2053,7 @@
             document.getElementById('app-container').style.display = 'none';
             document.getElementById('login-overlay').classList.remove('hidden');
             currentUserRank = "X-0";
-            currentUserName = "Misafir";
+            currentUserName = "Personel";
             currentUserId = null;
         }
     });
@@ -1950,39 +2182,42 @@
         });
 
         // Chat messages
-        database.ref('messages').limitToLast(100).on('child_added', (snapshot) => {
-            displayMessage(snapshot.val(), snapshot.key);
-            
-            // Play message sound if not sent by current user
-            if (snapshot.val().uid !== currentUserId && soundEnabled) {
-                const messageSound = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg?hl=tr');
-                messageSound.volume = 1;
-                messageSound.play();
-            }
-        });
+        database.ref('messages').orderByChild('timestamp').limitToLast(100).on('child_added', (snapshot) => {
+    const newMessage = snapshot.val();
+    if (newMessage.timestamp > lastMessageTimestamp) {
+        displayMessage(newMessage, snapshot.key);
+        lastMessageTimestamp = newMessage.timestamp;
+        
+        // Play message sound if not sent by current user
+        if (newMessage.uid !== currentUserId && soundEnabled) {
+            const messageSound = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg?hl=tr');
+            messageSound.volume = 0.5;
+            messageSound.play();
+        }
+    }
+});
 
         // Private messages listener
-        database.ref('users').once('value').then((snapshot) => {
+      database.ref('users').once('value').then((snapshot) => {
             snapshot.forEach((userSnapshot) => {
                 const userId = userSnapshot.key;
                 if (userId !== currentUserId) {
                     // Create a unique conversation ID by sorting user IDs
                     const conversationId = [currentUserId, userId].sort().join('_');
                     
+                    // BURADAKİ DÜZELTME
                     database.ref(`privateMessages/${conversationId}`).limitToLast(1).on('child_added', (messageSnapshot) => {
                         const message = messageSnapshot.val();
-                        if (message.senderId !== currentUserId) {
-                            // Only count if not in private chat with this user
-                            if (currentPrivateChatUserId !== userId) {
-                                if (!unreadMessages[userId]) {
-                                    unreadMessages[userId] = 0;
-                                }
-                                unreadMessages[userId]++;
-                                updateNotificationBadge();
-                                
-                                // Show notification
-                                showAlert(`Yeni özel mesaj: ${message.senderName}`, 'success');
+                        // Sadece yeni gelen mesajlar ve şu an konuştuğunuz kişi değilse sayacı artır
+                        if (message.senderId !== currentUserId && currentPrivateChatUserId !== userId) {
+                            if (!unreadMessages[userId]) {
+                                unreadMessages[userId] = 0;
                             }
+                            unreadMessages[userId]++;
+                            updateNotificationBadge();
+                            
+                            // Show notification
+                            showAlert(`Yeni özel mesaj: ${message.senderName}`, 'success');
                         }
                     });
                 }
@@ -2038,89 +2273,162 @@
         }
     }
 
-    // --- CHAT FUNCTIONALITY ---
-    function displayMessage(message, messageId) {
-        const chatMessages = document.getElementById('chat-messages');
-        const isCurrentUser = message.uid === currentUserId;
-        
-        const messageEl = document.createElement('div');
-        messageEl.className = `message ${isCurrentUser ? 'sent' : 'received'}`;
-        messageEl.style.background = isCurrentUser ? 
-            `linear-gradient(90deg, ${messageBubbleColor}, ${messageBubbleColor})` : 
-            `linear-gradient(90deg, ${messageBubbleColorReceived}, ${messageBubbleColorReceived})`;
-        
-        let html = '';
-        if (message.replyToText) {
-            html += `<div class="reply-indicator">↩ ${message.replyToText}</div>`;
-        }
-        
-        html += `
-            <div class="message-sender" data-user-id="${message.uid}">${message.name} <span class="friend-rank">${message.rank}</span></div>
-            <div class="message-text">${message.text}</div>
-            <div class="message-timestamp">${formatTimestamp(message.timestamp)}</div>
-            <div class="message-actions">
-                <button class="message-action-btn" data-action="reply" data-message-id="${messageId}" data-message-text="${message.text}">↩</button>
-                ${!isCurrentUser ? `<button class="message-action-btn" data-action="pm" data-user-id="${message.uid}" data-user-name="${message.name}">✉</button>` : ''}
-                ${(isCurrentUser || currentUserRank === "X-5") ? `<button class="message-action-btn" data-action="delete" data-message-id="${messageId}">×</button>` : ''}
-            </div>
-        `;
-        
-        messageEl.innerHTML = html;
-        chatMessages.appendChild(messageEl);
+   function displayMessage(message, messageId) {
+    const chatMessages = document.getElementById('chat-messages');
+    const isCurrentUser = message.uid === currentUserId;
+    
+    // Scroll pozisyonunu kaydet (kullanıcı yukarı scroll yapmış olabilir)
+    const wasScrolledToBottom = isScrolledToBottom(chatMessages);
+    
+    const messageEl = document.createElement('div');
+    messageEl.className = `message ${isCurrentUser ? 'sent' : 'received'}`;
+    messageEl.style.background = isCurrentUser ? 
+        `linear-gradient(90deg, ${messageBubbleColor}, ${messageBubbleColor})` : 
+        `linear-gradient(90deg, ${messageBubbleColorReceived}, ${messageBubbleColorReceived})`;
+    messageEl.dataset.messageId = messageId;
+    
+    let html = '';
+    if (message.replyToText) {
+        html += `<div class="reply-indicator">↩ ${message.replyToText}</div>`;
+    }
+    
+    html += `
+        <div class="message-sender" data-user-id="${message.uid}">${message.name} <span class="friend-rank">${message.rank}</span></div>
+        <div class="message-text">${message.text}</div>
+        <div class="message-timestamp">${formatTimestamp(message.timestamp)}</div>
+        <div class="message-actions">
+            <button class="message-action-btn" data-action="reply" data-message-id="${messageId}" data-message-text="${message.text}">↩</button>
+            ${!isCurrentUser ? `<button class="message-action-btn" data-action="pm" data-user-id="${message.uid}" data-user-name="${message.name}">✉</button>` : ''}
+            ${(isCurrentUser || currentUserRank === "X-5") ? `<button class="message-action-btn" data-action="delete" data-message-id="${messageId}">×</button>` : ''}
+        </div>
+    `;
+    
+    messageEl.innerHTML = html;
+    
+    // Yeni mesajları en alta ekle
+    chatMessages.appendChild(messageEl);
+    
+    if (wasScrolledToBottom || isCurrentUser) {
         scrollToBottom(chatMessages);
     }
+}
 
-    async function sendMessage() {
-        const messageInput = document.getElementById('chat-input');
-        const text = messageInput.value.trim();
-        
-        if (!text || !currentUserId) return;
-        
-        const userRef = database.ref(`users/${currentUserId}`);
-        const snapshot = await userRef.once('value');
-        const userData = snapshot.val();
-        
-        const messageData = {
-            uid: currentUserId,
-            name: userData.username,
-            rank: userData.rank,
-            text: text,
-            timestamp: Date.now(),
-            replyTo: repliedMessageId,
-            replyToText: repliedMessageText
-        };
-        
+function isScrolledToBottom(element) {
+    return element.scrollHeight - element.scrollTop - element.clientHeight < 50;
+}
+
+   async function sendMessage() {
+    const messageInput = document.getElementById('chat-input');
+    const text = messageInput.value.trim();
+    
+    if (!text || !currentUserId) return;
+    
+    const userRef = database.ref(`users/${currentUserId}`);
+    const snapshot = await userRef.once('value');
+    const userData = snapshot.val();
+    
+    const messageData = {
+        uid: currentUserId,
+        name: userData.username,
+        rank: userData.rank,
+        text: text,
+        timestamp: Date.now(),
+        replyTo: repliedMessageId,
+        replyToText: repliedMessageText
+    };
+    
+    try {
         await database.ref('messages').push(messageData);
-        
-        // Clear input and reply state
         messageInput.value = '';
+        
+        // Clear reply state if exists
         if (repliedMessageId) {
             repliedMessageId = null;
             repliedMessageText = null;
             const replyBar = document.getElementById('reply-to-bar');
             if (replyBar) replyBar.remove();
         }
+        
+        // Scroll to bottom after sending message
+        setTimeout(() => {
+            scrollToBottom(document.getElementById('chat-messages'));
+        }, 100);
+    } catch (error) {
+        showAlert('Mesaj gönderilemedi: ' + error.message, 'error');
     }
+}
+
+function loadChatMessages() {
+    const chatMessages = document.getElementById('chat-messages');
+    chatMessages.innerHTML = '';
+    
+    database.ref('messages').orderByChild('timestamp').limitToLast(100).on('value', (snapshot) => {
+        chatMessages.innerHTML = ''; // Clear messages before re-rendering
+        
+        if (!snapshot.exists()) {
+            chatMessages.innerHTML = '<div class="no-messages">Henüz mesaj yok</div>';
+            return;
+        }
+        
+        const messages = [];
+        snapshot.forEach((childSnapshot) => {
+            messages.push({
+                id: childSnapshot.key,
+                ...childSnapshot.val()
+            });
+        });
+        
+        // Sort messages by timestamp (oldest first)
+        messages.sort((a, b) => a.timestamp - b.timestamp);
+        
+        // Display messages
+        messages.forEach(message => {
+            displayMessage(message, message.id);
+        });
+        
+        // Scroll to bottom after loading messages
+        setTimeout(() => {
+            scrollToBottom(chatMessages);
+        }, 100);
+    });
+}
 
     async function deleteMessage(messageId) {
-        if (!messageId) return;
+        if (!messageId || !currentUserId) return;
         
-        if (currentUserRank === "X-5" || confirm('Mesajı silmek istediğinize emin misiniz?')) {
-            await database.ref('messages/' + messageId).remove();
-            showAlert('Mesaj silindi', 'success');
+        try {
+            // Mesajın sahibini kontrol et
+            const messageRef = database.ref('messages/' + messageId);
+            const snapshot = await messageRef.once('value');
+            const message = snapshot.val();
+            
+            if (!message) {
+                showAlert('Mesaj bulunamadı', 'error');
+                return;
+            }
+            
+            // Sadece mesaj sahibi veya admin silebilir
+            if (message.uid === currentUserId || currentUserRank === "X-5") {
+                if (currentUserRank !== "X-5" && !confirm('Mesajı silmek istediğinize emin misiniz?')) {
+                    return;
+                }
+                
+                await messageRef.remove();
+                showAlert('Mesaj silindi', 'success');
+                
+                // Ekrandan da kaldır
+                const messageElement = document.querySelector(`.message[data-message-id="${messageId}"]`);
+                if (messageElement) {
+                    messageElement.remove();
+                }
+            } else {
+                showAlert('Bu mesajı silme yetkiniz yok', 'error');
+            }
+        } catch (error) {
+            showAlert('Mesaj silinemedi: ' + error.message, 'error');
         }
     }
 
-    function loadChatMessages() {
-        const chatMessages = document.getElementById('chat-messages');
-        chatMessages.innerHTML = '';
-        database.ref('messages').limitToLast(100).once('value', (snapshot) => {
-            snapshot.forEach((childSnapshot) => {
-                displayMessage(childSnapshot.val(), childSnapshot.key);
-            });
-            scrollToBottom(chatMessages);
-        });
-    }
 
     function initEmojiPicker() {
         const emojiPicker = document.getElementById('emoji-picker');
@@ -2497,21 +2805,7 @@
             return String.fromCharCode(((code - shiftBase + shift) % 26) + shiftBase);
         });
     }
-function loadChatMessages() {
-    const chatMessages = document.getElementById('chat-messages');
-    chatMessages.innerHTML = '';
-    
-    database.ref('messages').limitToLast(100).once('value', (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-            displayMessage(childSnapshot.val(), childSnapshot.key);
-        });
-        
-        // En son mesaja otomatik kaydır
-        setTimeout(() => {
-            scrollToBottom(chatMessages);
-        }, 100);
-    });
-}
+
     function vigenereCipher(text, key, decrypt = false) {
         const turkishChars = {
             'ç': 'c', 'ğ': 'g', 'ı': 'i', 'ö': 'o', 'ş': 's', 'ü': 'u',
@@ -2756,7 +3050,7 @@ function loadChatMessages() {
             return;
         }
         
-        currentPrivateChatUserId = userId;
+         currentPrivateChatUserId = userId;
         document.getElementById('private-chat-title').textContent = `Özel Sohbet: ${userName}`;
         document.getElementById('private-chat-modal').classList.add('active');
         
@@ -2770,15 +3064,29 @@ function loadChatMessages() {
         loadPrivateMessages(userId);
     }
 
-    async function loadPrivateMessages(userId) {
-        const privateChatMessages = document.getElementById('private-chat-messages');
-        privateChatMessages.innerHTML = '';
-        
-        // Create a unique conversation ID by sorting user IDs
-        const conversationId = [currentUserId, userId].sort().join('_');
-        
-        database.ref(`privateMessages/${conversationId}`).limitToLast(100).once('value', (snapshot) => {
-            if (!snapshot.exists()) return;
+async function loadPrivateMessages(userId) {
+    const privateChatMessages = document.getElementById('private-chat-messages');
+    privateChatMessages.innerHTML = '';
+    
+    // Remove previous listener if exists
+    if (privateChatListener) {
+        privateChatListener();
+    }
+    
+    // Create conversation ID
+    const conversationId = [currentUserId, userId].sort().join('_');
+    
+    // Load existing messages
+    privateChatListener = database.ref(`privateMessages/${conversationId}`)
+        .orderByChild('timestamp')
+        .limitToLast(100)
+        .on('value', (snapshot) => {
+            privateChatMessages.innerHTML = '';
+            
+            if (!snapshot.exists()) {
+                privateChatMessages.innerHTML = '<div class="no-messages">Henüz mesaj yok</div>';
+                return;
+            }
             
             const messages = [];
             snapshot.forEach((childSnapshot) => {
@@ -2790,25 +3098,72 @@ function loadChatMessages() {
             
             // Display messages
             messages.forEach(message => {
-                const isCurrentUser = message.senderId === currentUserId;
-                const messageEl = document.createElement('div');
-                messageEl.className = `message ${isCurrentUser ? 'sent' : 'received'}`;
-                messageEl.style.background = isCurrentUser ? 
-                    `linear-gradient(90deg, ${messageBubbleColor}, ${messageBubbleColor})` : 
-                    `linear-gradient(90deg, ${messageBubbleColorReceived}, ${messageBubbleColorReceived})`;
-                
-                messageEl.innerHTML = `
-                    <div class="message-sender">${message.senderName} <span class="friend-rank">${message.senderRank}</span></div>
-                    <div class="message-text">${message.text}</div>
-                    <div class="message-timestamp">${formatTimestamp(message.timestamp)}</div>
-                `;
-                
-                privateChatMessages.appendChild(messageEl);
+                displayPrivateMessage(message);
             });
             
-            scrollToBottom(privateChatMessages);
+            // Scroll to bottom
+            setTimeout(() => {
+                scrollToBottom(privateChatMessages);
+            }, 100);
         });
+}
+
+function displayPrivateMessage(message) {
+    const privateChatMessages = document.getElementById('private-chat-messages');
+    const isCurrentUser = message.senderId === currentUserId;
+    
+    const messageEl = document.createElement('div');
+    messageEl.className = `message ${isCurrentUser ? 'sent' : 'received'}`;
+    messageEl.style.background = isCurrentUser ? 
+        `linear-gradient(90deg, ${messageBubbleColor}, ${messageBubbleColor})` : 
+        `linear-gradient(90deg, ${messageBubbleColorReceived}, ${messageBubbleColorReceived})`;
+    
+    messageEl.innerHTML = `
+        <div class="message-sender">${message.senderName} <span class="friend-rank">${message.senderRank}</span></div>
+        <div class="message-text">${message.text}</div>
+        <div class="message-timestamp">${formatTimestamp(message.timestamp)}</div>
+    `;
+    
+    privateChatMessages.appendChild(messageEl);
+}
+
+async function sendPrivateMessage() {
+    const messageInput = document.getElementById('private-chat-input');
+    const text = messageInput.value.trim();
+    
+    if (!text || !currentUserId || !currentPrivateChatUserId) return;
+    
+    try {
+        const userRef = database.ref(`users/${currentUserId}`);
+        const friendRef = database.ref(`users/${currentPrivateChatUserId}`);
+        const [userSnapshot, friendSnapshot] = await Promise.all([userRef.once('value'), friendRef.once('value')]);
+        
+        const userData = userSnapshot.val();
+        const friendData = friendSnapshot.val();
+        
+        const conversationId = [currentUserId, currentPrivateChatUserId].sort().join('_');
+        
+        const messageData = {
+            senderId: currentUserId,
+            senderName: userData.username,
+            senderRank: userData.rank,
+            receiverId: currentPrivateChatUserId,
+            receiverName: friendData.username,
+            text: text,
+            timestamp: Date.now()
+        };
+        
+        await database.ref(`privateMessages/${conversationId}`).push(messageData);
+        messageInput.value = '';
+        
+        // Scroll to bottom after sending
+        setTimeout(() => {
+            scrollToBottom(document.getElementById('private-chat-messages'));
+        }, 100);
+    } catch (error) {
+        showAlert('Özel mesaj gönderilemedi: ' + error.message, 'error');
     }
+}
 
     async function sendPrivateMessage() {
         const messageInput = document.getElementById('private-chat-input');
@@ -2877,9 +3232,9 @@ function loadChatMessages() {
         const isFriend = await database.ref(`friends/${currentUserId}/${userId}`).once('value');
         const isCurrentUser = userId === currentUserId;
         
-        document.getElementById('profile-pm-btn').style.display = isFriend.exists() && !isCurrentUser ? 'block' : 'none';
-        document.getElementById('profile-add-friend-btn').style.display = !isFriend.exists() && !isCurrentUser ? 'block' : 'none';
-        document.getElementById('profile-add-friend-btn').textContent = 'Bağlantı Ekle';
+      document.getElementById('profile-pm-btn').style.display = isFriend.exists() && !isCurrentUser ? 'block' : 'none';
+    document.getElementById('profile-add-friend-btn').style.display = !isFriend.exists() && !isCurrentUser ? 'block' : 'none';
+    document.getElementById('profile-settings-btn').style.display = isCurrentUser ? 'block' : 'none';
         
         // Check if there's a pending request
         const requestFromMe = await database.ref(`friendRequests/${userId}/${currentUserId}`).once('value');
@@ -3248,7 +3603,6 @@ function loadChatMessages() {
             }
         });
 
-        // Private Chat Modal
         document.getElementById('send-private-message-btn').addEventListener('click', sendPrivateMessage);
         document.getElementById('private-chat-input').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendPrivateMessage();
@@ -3257,15 +3611,20 @@ function loadChatMessages() {
         document.getElementById('private-chat-close').addEventListener('click', () => {
             document.getElementById('private-chat-modal').classList.remove('active');
             currentPrivateChatUserId = null;
+            // Özel sohbet modalı kapanırken dinleyiciyi kaldır
+            if (privateChatListener) {
+                privateChatListener(); // Unsubscribe the listener
+                privateChatListener = null;
+            }
         });
 
         // Profile Modal
-        document.getElementById('profile-close').addEventListener('click', () => {
+       document.getElementById('profile-close').addEventListener('click', () => {
             document.getElementById('profile-modal').classList.remove('active');
             currentProfileUserId = null;
         });
         
-        document.getElementById('profile-pm-btn').addEventListener('click', () => {
+       document.getElementById('profile-pm-btn').addEventListener('click', () => {
             if (currentProfileUserId) {
                 database.ref(`users/${currentProfileUserId}`).once('value').then((snapshot) => {
                     const user = snapshot.val();
@@ -3308,12 +3667,23 @@ function loadChatMessages() {
                 }
             }
         });
-
+            document.getElementById('profile-settings-btn').addEventListener('click', () => {
+            document.getElementById('profile-modal').classList.remove('active');
+            document.getElementById('settings-modal').classList.add('active');
+        });
         // Settings Modal
         document.getElementById('settings-close').addEventListener('click', () => {
             document.getElementById('settings-modal').classList.remove('active');
         });
-        
+        document.getElementById('user-profile-widget').addEventListener('click', () => {
+          if (currentUserId) {
+            // Profil modalını göster (ayarlar butonu zaten profil modalı içinde)
+            showProfile(currentUserId);
+            // Dinamik olarak buton ekleme veya manipülasyonuna gerek kalmıyor
+            // Çünkü settings-btn zaten HTML'de var ve yukarıda listener'ı tanımlandı.
+            // Bu kısımda profil modalını açmak yeterlidir.
+          }
+        });
         document.getElementById('change-username-btn').addEventListener('click', () => {
             const newUsername = document.getElementById('new-username-input').value.trim();
             changeUsername(newUsername);
@@ -3336,9 +3706,26 @@ function loadChatMessages() {
 
         // User Profile Widget
         document.getElementById('user-profile-widget').addEventListener('click', () => {
-            if (currentUserId) {
-                showProfile(currentUserId);
-            }
+          if (currentUserId) {
+        // Profil modalını göster
+        showProfile(currentUserId);
+        
+        // Ayarlar butonu ekle
+        const profileActions = document.getElementById('profile-actions');
+        if (!document.getElementById('settings-btn')) {
+            const settingsBtn = document.createElement('button');
+            settingsBtn.id = 'settings-btn';
+            settingsBtn.className = 'profile-action-btn';
+            settingsBtn.textContent = 'Ayarlar';
+            settingsBtn.style.background = 'var(--primary-color)';
+            settingsBtn.style.color = 'var(--text-dark)';
+            settingsBtn.addEventListener('click', () => {
+                document.getElementById('profile-modal').classList.remove('active');
+                document.getElementById('settings-modal').classList.add('active');
+            });
+            profileActions.appendChild(settingsBtn);
+        }
+    }
         });
 
         // Admin functions
@@ -3373,6 +3760,7 @@ function loadChatMessages() {
     // Initialize the app
     document.addEventListener('DOMContentLoaded', () => {
         initializeEventListeners();
+        
     });
 </script>
 </body>
