@@ -1798,6 +1798,15 @@
                 <button id="change-username-btn">Değiştir</button>
             </div>
         </div>
+        <!-- Settings Modal içine bu kısmı ekle -->
+<div class="settings-section">
+    <h4>Oyun Bilgileri</h4>
+    <div class="setting-item">
+        <label for="roblox-id-input" class="setting-label">Roblox ID</label>
+        <input type="text" id="roblox-id-input" class="terminal-input" placeholder="Roblox Kullanıcı ID'niz">
+    </div>
+    <button id="save-roblox-id-btn" class="terminal-btn" style="margin-top: 10px;">Kaydet</button>
+</div>
         <div class="settings-section">
             <h4>Mesaj Balon Rengi</h4>
             <div class="color-picker">
@@ -1826,6 +1835,7 @@
                 </label>
             </div>
         </div>
+        
         <div class="settings-section">
             <h4>Görünüm</h4>
             <div class="setting-item">
@@ -2042,7 +2052,7 @@
             showPage('dashboard-page');
             setupRealtimeListeners();
             showAlert(`Hoş geldiniz, ${currentUserName}`, 'success');
-            
+            loadRobloxId();
             // Load latest announcement
             loadLatestAnnouncementForDashboard();
             loadActivePoll();
@@ -3063,7 +3073,60 @@ function loadChatMessages() {
         // Load messages
         loadPrivateMessages(userId);
     }
+// Roblox ID kaydetme fonksiyonu
+async function saveRobloxId() {
+    const robloxId = document.getElementById('roblox-id-input').value.trim();
+    
+    if (!robloxId) {
+        showAlert('Roblox ID boş olamaz!', 'error');
+        return;
+    }
+    
+    if (!/^\d+$/.test(robloxId)) {
+        showAlert('Geçerli bir Roblox ID girin (sadece sayılar)!', 'error');
+        return;
+    }
+    
+    try {
+        await database.ref(`users/${currentUserId}/robloxId`).set(robloxId);
+        showAlert('Roblox ID başarıyla kaydedildi!', 'success');
+    } catch (error) {
+        showAlert('Roblox ID kaydedilemedi: ' + error.message, 'error');
+    }
+}
 
+// Roblox ID yükleme fonksiyonu
+async function loadRobloxId() {
+    if (!currentUserId) return;
+    
+    const snapshot = await database.ref(`users/${currentUserId}/robloxId`).once('value');
+    if (snapshot.exists()) {
+        document.getElementById('roblox-id-input').value = snapshot.val();
+    }
+}
+
+// Profil modalında Roblox ID göster
+async function showRobloxIdInProfile(userId) {
+    const snapshot = await database.ref(`users/${userId}/robloxId`).once('value');
+    const robloxId = snapshot.exists() ? snapshot.val() : 'Belirtilmemiş';
+    
+    // Profil detaylarına yeni bir satır ekleyelim
+    const profileDetails = document.querySelector('.profile-details');
+    const existingRow = document.getElementById('roblox-id-row');
+    
+    if (existingRow) {
+        existingRow.querySelector('.profile-value').textContent = robloxId;
+    } else {
+        const robloxRow = document.createElement('div');
+        robloxRow.className = 'profile-row';
+        robloxRow.id = 'roblox-id-row';
+        robloxRow.innerHTML = `
+            <span class="profile-label">Roblox ID:</span>
+            <span class="profile-value">${robloxId}</span>
+        `;
+        profileDetails.appendChild(robloxRow);
+    }
+}
 async function loadPrivateMessages(userId) {
     const privateChatMessages = document.getElementById('private-chat-messages');
     privateChatMessages.innerHTML = '';
@@ -3210,7 +3273,7 @@ async function sendPrivateMessage() {
         currentProfileUserId = userId;
         const snapshot = await database.ref(`users/${userId}`).once('value');
         const user = snapshot.val();
-        
+        showRobloxIdInProfile(userId);
         if (!user) return;
         
         document.getElementById('profile-name').textContent = user.username;
@@ -3417,7 +3480,8 @@ async function sendPrivateMessage() {
     function initializeEventListeners() {
         // Initialize emoji picker
         initEmojiPicker();
-        
+        document.getElementById('save-roblox-id-btn').addEventListener('click', saveRobloxId);
+
         // Initialize particles
         initParticles();
         
